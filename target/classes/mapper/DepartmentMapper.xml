@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace用于与DAO层的接口类进行绑定,这样我们无需实现DAO层的接口
+类,其接口类就能够自动的找到相关的SQL语句进行绑定实现-->
+<mapper namespace="com.zjr.dao.DepartmentDao">
+    <resultMap type="Department" id="DepartmentList">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <resultMap type="DepartmentDto" id="DepartmentDtoList">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="page" column="page"/>
+        <result property="size" column="size"/>
+    </resultMap>
+    <insert id="save" parameterType="Department" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO db_department(name) VALUES (#{name})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+       DELETE FROM db_department WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Department">
+       UPDATE db_department SET
+       name=#{name}  WHERE id = #{id}
+    </update>
+
+    <select id="get" parameterType="int" resultType="Department">
+        SELECT * FROM db_department WHERE id= #{id}
+    </select>
+
+    <select id="getByName" parameterType="string" resultType="Department">
+        SELECT * FROM db_department WHERE name=  #{name}
+    </select>
+
+    <select id="queryByPage" resultMap="DepartmentList">
+        SELECT * FROM db_department
+        LIMIT #{page},${size}
+    </select>
+
+    <select id="queryByName" resultType="com.zjr.dto.DepartmentDto">
+        SELECT * FROM db_department WHERE name LIKE CONCAT(CONCAT('%', #{name}), '%')
+        LIMIT ${page},${size}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM db_department
+    </select>
+
+    <select id="countByName" resultType="int">
+        SELECT COUNT(*) FROM db_department WHERE name LIKE CONCAT(CONCAT('%', #{name}), '%')
+    </select>
+
+    <select id="getById" resultType="Department">
+        SELECT * FROM db_department WHERE id=#{id}
+    </select>
+</mapper>

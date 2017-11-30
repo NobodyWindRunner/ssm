@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace用于与DAO层的接口类进行绑定,这样我们无需实现DAO层的接口
+类,其接口类就能够自动的找到相关的SQL语句进行绑定实现-->
+<mapper namespace="com.zjr.dao.ProjectDao">
+    <resultMap type="Project" id="ProjectList">
+        <result property="id" column="id"/>
+        <result property="proName" column="proName"/>
+        <result property="detail" column="detail"/>
+        <result property="statusVal" column="statusVal"/>
+    </resultMap>
+    <resultMap type="ProjectDto" id="UserDtoList">
+        <result property="id" column="id"/>
+        <result property="proName" column="proName"/>
+        <result property="detail" column="detail"/>
+        <result property="statusVal" column="statusVal"/>
+        <result property="page" column="page"/>
+        <result property="size" column="size"/>
+    </resultMap>
+    <insert id="save" parameterType="Project" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO db_project(proName,detail,statusVal) VALUES (#{proName},#{detail},#{statusVal})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+       DELETE FROM db_project WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Project">
+       UPDATE db_project SET
+       proName=#{proName},
+       detail=#{detail},
+       statusVal=#{statusVal} WHERE id = #{id}
+    </update>
+
+    <select id="get" parameterType="int" resultType="Project">
+        SELECT * FROM db_project WHERE id= #{id}
+    </select>
+
+    <select id="getByName" parameterType="string" resultType="Project">
+        SELECT * FROM db_project WHERE proName=  #{proName}
+    </select>
+
+    <select id="queryByPage" resultMap="ProjectList">
+        SELECT * FROM db_project
+        LIMIT #{page},8
+    </select>
+
+    <select id="queryHisByPage" resultType="com.zjr.dto.ProjectDto">
+        SELECT * FROM db_project WHERE statusVal>1
+        LIMIT #{page},8
+    </select>
+
+    <select id="queryByName" resultType="com.zjr.dto.ProjectDto">
+        SELECT * FROM db_project WHERE proName LIKE CONCAT(CONCAT('%', #{proName}), '%')
+        LIMIT ${page},8
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM db_project
+    </select>
+
+    <select id="countByStatus" resultType="int">
+        SELECT COUNT(*) FROM db_project WHERE statusVal>1
+    </select>
+
+    <select id="countByName" resultType="int">
+        SELECT COUNT(*) FROM db_project WHERE proName LIKE CONCAT(CONCAT('%', #{proName}), '%')
+    </select>
+
+    <select id="getById" resultType="Project">
+        SELECT * FROM db_project WHERE id=#{id}
+    </select>
+</mapper>

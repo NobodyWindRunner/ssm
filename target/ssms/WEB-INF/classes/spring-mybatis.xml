@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="User" type="com.zjr.entity.User"/>
+		<typeAlias alias="UserDto" type="com.zjr.dto.UserDto"/>
+		<typeAlias alias="Project" type="com.zjr.entity.Project"/>
+		<typeAlias alias="ProjectDto" type="com.zjr.dto.ProjectDto"/>
+		<typeAlias alias="Department" type="com.zjr.entity.Department"/>
+		<typeAlias alias="DepartmentDto" type="com.zjr.dto.DepartmentDto"/>
+		<typeAlias alias="MenuInfo" type="com.zjr.entity.MenuInfo"/>
+	</typeAliases>
+
+</configuration>

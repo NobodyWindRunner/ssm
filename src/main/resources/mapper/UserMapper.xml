@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace用于与DAO层的接口类进行绑定,这样我们无需实现DAO层的接口
+类,其接口类就能够自动的找到相关的SQL语句进行绑定实现-->
+<mapper namespace="com.zjr.dao.UserDao">
+    <resultMap type="User" id="UserList">
+        <result property="id" column="id"/>
+        <result property="loginName" column="loginName"/>
+        <result property="password" column="password"/>
+        <result property="statusVal" column="statusVal"/>
+    </resultMap>
+    <resultMap type="UserDto" id="UserDtoList">
+        <result property="id" column="id"/>
+        <result property="loginName" column="loginName"/>
+        <result property="password" column="password"/>
+        <result property="statusVal" column="statusVal"/>
+        <result property="page" column="page"/>
+        <result property="size" column="size"/>
+    </resultMap>
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO db_user(loginName,password,statusVal) VALUES (#{loginName},#{password},#{statusVal})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+       DELETE FROM db_user WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="User">
+       UPDATE db_user SET
+       loginName=#{loginName},
+       password=#{password},
+       statusVal=#{statusVal} WHERE id = #{id}
+    </update>
+
+    <select id="get" parameterType="int" resultType="User">
+        SELECT * FROM db_user WHERE id= #{id}
+    </select>
+
+    <select id="getByName" parameterType="string" resultType="User">
+        SELECT * FROM db_user WHERE loginName=  #{loginName}
+    </select>
+
+    <select id="queryByPage" resultMap="UserList">
+        SELECT * FROM db_user
+        LIMIT #{page},${size}
+    </select>
+
+    <select id="queryByName" resultType="com.zjr.dto.UserDto">
+        SELECT * FROM db_user WHERE loginName LIKE CONCAT(CONCAT('%', #{loginName}), '%')
+        LIMIT ${page},${size}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM db_user
+    </select>
+
+    <select id="countByName" resultType="int">
+        SELECT COUNT(*) FROM db_user WHERE loginName LIKE CONCAT(CONCAT('%', #{loginName}), '%')
+    </select>
+
+    <select id="getById" resultType="User">
+        SELECT * FROM db_user WHERE id=#{id}
+    </select>
+</mapper>
