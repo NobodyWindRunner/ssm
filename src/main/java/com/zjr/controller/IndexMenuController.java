@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.zjr.util.Comm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,7 +48,7 @@ public class IndexMenuController{
 	public String logout(HttpServletRequest req, HttpServletResponse rep,HttpSession session) throws IOException, IOException {
 		session = req.getSession(false);
 		if(session!=null){
-			session.removeAttribute("adminsession");
+			session.removeAttribute(Comm.USER_SESSION_NAME);
 		}
 		return "login";
 	}
@@ -64,7 +65,7 @@ public class IndexMenuController{
     	}else{
     		User logUser =loginService.login(user);
     		if(logUser!=null &&logUser.getPassword().equals(user.getPassword())){
-				session.setAttribute("adminsession", logUser);
+				session.setAttribute(Comm.USER_SESSION_NAME, logUser);
 				this.addMenu(req);
 				return "index";
 			}

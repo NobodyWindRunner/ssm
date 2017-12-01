@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace用于与DAO层的接口类进行绑定,这样我们无需实现DAO层的接口
+类,其接口类就能够自动的找到相关的SQL语句进行绑定实现-->
+<mapper namespace="com.zjr.dao.EmployeeDao">
+    <resultMap type="Employee" id="EmployeeList">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="job" column="job"/>
+        <result property="deptId" column="dept_Id"/>
+    </resultMap>
+    <resultMap type="EmployeeDto" id="EmployeeDtoList">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="job" column="job"/>
+        <result property="deptId" column="dept_Id"/>
+        <result property="page" column="page"/>
+        <result property="size" column="size"/>
+    </resultMap>
+    <insert id="save" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO db_employee(name,sex,job,dept_Id) VALUES (#{name},#{sex},#{job},#{deptId})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+       DELETE FROM db_employee WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Employee">
+       UPDATE db_employee SET
+       name=#{name},
+       sex=#{sex},
+       job=#{job},
+       dept_Id=#{deptId}  WHERE id = #{id}
+    </update>
+
+    <select id="get" parameterType="int" resultMap="EmployeeList">
+        SELECT * FROM db_employee WHERE id= #{id}
+    </select>
+
+    <select id="queryByPage" resultMap="EmployeeList">
+        SELECT * FROM db_employee
+        LIMIT #{page},${size}
+    </select>
+
+    <select id="queryByName" resultType="com.zjr.dto.EmployeeDto">
+        SELECT * FROM db_employee WHERE name LIKE CONCAT(CONCAT('%', #{name}), '%')
+        LIMIT ${page},${size}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM db_employee
+    </select>
+
+    <select id="countByName" resultType="int">
+        SELECT COUNT(*) FROM db_employee WHERE name LIKE CONCAT(CONCAT('%', #{name}), '%')
+    </select>
+
+    <select id="getById" resultType="Employee">
+        SELECT * FROM db_employee WHERE id=#{id}
+    </select>
+</mapper>

@@ -28,7 +28,7 @@
        name=#{name}  WHERE id = #{id}
     </update>
 
-    <select id="get" parameterType="int" resultType="Department">
+    <select id="getById" parameterType="int" resultType="Department">
         SELECT * FROM db_department WHERE id= #{id}
     </select>
 
@@ -54,7 +54,7 @@
         SELECT COUNT(*) FROM db_department WHERE name LIKE CONCAT(CONCAT('%', #{name}), '%')
     </select>
 
-    <select id="getById" resultType="Department">
-        SELECT * FROM db_department WHERE id=#{id}
+    <select id="queryAll" resultType="Department">
+        SELECT * FROM db_department
     </select>
 </mapper>

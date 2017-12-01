@@ -9,6 +9,8 @@
 		<typeAlias alias="ProjectDto" type="com.zjr.dto.ProjectDto"/>
 		<typeAlias alias="Department" type="com.zjr.entity.Department"/>
 		<typeAlias alias="DepartmentDto" type="com.zjr.dto.DepartmentDto"/>
+		<typeAlias alias="Employee" type="com.zjr.entity.Employee"/>
+		<typeAlias alias="EmployeeDto" type="com.zjr.dto.EmployeeDto"/>
 		<typeAlias alias="MenuInfo" type="com.zjr.entity.MenuInfo"/>
 	</typeAliases>
 

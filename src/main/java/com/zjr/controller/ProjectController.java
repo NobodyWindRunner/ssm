@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.zjr.dto.ProjectDto;
+import com.zjr.util.Comm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +56,7 @@ public class ProjectController {
 	    
 	@RequestMapping("list")
 	public String list(Integer page, HttpServletRequest req){
-		PageList<ProjectDto> data=proService.queryByPage(page==null?1:page,8);
+		PageList<ProjectDto> data=proService.queryByPage(page==null?1:page, Comm.PAGE_SIZE);
 		req.setAttribute("data", data);
 		req.setAttribute("page", page);
 		return "project/proList";
@@ -63,7 +64,7 @@ public class ProjectController {
 	    
 	@RequestMapping("hislist")
 	public String hislist(Integer page, HttpServletRequest req){
-		PageList<ProjectDto> data=proService.queryHisByPage(page==null?1:page,8);
+		PageList<ProjectDto> data=proService.queryHisByPage(page==null?1:page,Comm.PAGE_SIZE);
 		req.setAttribute("data", data);
 		req.setAttribute("page", page);
 		return "project/proHisList";
@@ -100,7 +101,7 @@ public class ProjectController {
 
 	@RequestMapping(value = "like", method = RequestMethod.GET)
 	public String like(String proName,Integer page,HttpServletRequest req,HttpServletResponse rep){
-		PageList<ProjectDto> data=proService.queryByName(proName, page==null?1:page,8);
+		PageList<ProjectDto> data=proService.queryByName(proName, page==null?1:page,Comm.PAGE_SIZE);
 		req.setAttribute("data", data);
 		req.setAttribute("page", page);
 		return "project/proList";

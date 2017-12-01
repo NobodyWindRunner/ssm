@@ -3,6 +3,7 @@ package com.zjr.controller;
 import com.zjr.dto.DepartmentDto;
 import com.zjr.entity.Department;
 import com.zjr.service.DepartmentService;
+import com.zjr.util.Comm;
 import com.zjr.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,7 @@ public class DepartmentController {
 	    
 	@RequestMapping("list")
 	public String list(Integer page, HttpServletRequest req){
-		PageList<DepartmentDto> data=departmentService.queryByPage(page==null?1:page,8);
+		PageList<DepartmentDto> data=departmentService.queryByPage(page==null?1:page,Comm.PAGE_SIZE);
 		req.setAttribute("data", data);
 		req.setAttribute("page", page);
 		return "department/depList";
@@ -67,7 +68,7 @@ public class DepartmentController {
 	    
 	@RequestMapping(value = "get", method = RequestMethod.GET)
 	public String get(int id,Integer page,HttpServletRequest req,HttpServletResponse rep) throws IOException{
-		Department department = departmentService.get(id);
+		Department department = departmentService.getById(id);
 		if(department.getId()==null){
 			return list(page, req);
 		}else{
@@ -90,7 +91,7 @@ public class DepartmentController {
 
 	@RequestMapping(value = "like", method = RequestMethod.GET)
 	public String like(String name,Integer page,HttpServletRequest req,HttpServletResponse rep){
-		PageList<DepartmentDto> data=departmentService.queryByName(name, page==null?1:page,8);
+		PageList<DepartmentDto> data=departmentService.queryByName(name, page==null?1:page, Comm.PAGE_SIZE);
 		req.setAttribute("data", data);
 		req.setAttribute("page", page);
 		return "department/depList";

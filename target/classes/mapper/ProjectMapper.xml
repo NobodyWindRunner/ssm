@@ -44,17 +44,17 @@
 
     <select id="queryByPage" resultMap="ProjectList">
         SELECT * FROM db_project
-        LIMIT #{page},8
+        LIMIT #{page},${size}
     </select>
 
     <select id="queryHisByPage" resultType="com.zjr.dto.ProjectDto">
         SELECT * FROM db_project WHERE statusVal>1
-        LIMIT #{page},8
+        LIMIT #{page},${size}
     </select>
 
     <select id="queryByName" resultType="com.zjr.dto.ProjectDto">
         SELECT * FROM db_project WHERE proName LIKE CONCAT(CONCAT('%', #{proName}), '%')
-        LIMIT ${page},8
+        LIMIT ${page},${size}
     </select>
 
     <select id="count" resultType="int">

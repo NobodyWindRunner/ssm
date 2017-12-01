@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.zjr.dto.UserDto;
+import com.zjr.util.Comm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +56,7 @@ public class UserInfoController {
 	    
 	@RequestMapping("list")
 	public String list(Integer page, HttpServletRequest req){
-		PageList<UserDto> data=userService.queryByPage(page==null?1:page,8);
+		PageList<UserDto> data=userService.queryByPage(page==null?1:page, Comm.PAGE_SIZE);
 		req.setAttribute("data", data);
 		req.setAttribute("page", page);
 		return "userinfo/userList";
@@ -92,7 +93,7 @@ public class UserInfoController {
 
 	@RequestMapping(value = "like", method = RequestMethod.GET)
 	public String like(String loginName,Integer page,HttpServletRequest req,HttpServletResponse rep){
-		PageList<UserDto> data=userService.queryByName(loginName, page==null?1:page,8);
+		PageList<UserDto> data=userService.queryByName(loginName, page==null?1:page,Comm.PAGE_SIZE);
 		req.setAttribute("data", data);
 		req.setAttribute("page", page);
 		return "userinfo/userList";

@@ -35,9 +35,20 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public Department get(int id) {
+	public Department getById(int id) {
 		// TODO Auto-generated method stub
-		return dao.get(id);
+		return dao.getById(id);
+	}
+
+	@Override
+	public Department getByName(String name) {
+		// TODO Auto-generated method stub
+		return dao.getByName(name);
+	}
+
+	@Override
+	public List<Department> queryAll(){
+		return dao.queryAll();
 	}
 
 	@Override

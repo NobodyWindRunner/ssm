@@ -71,6 +71,7 @@
       <artifactId>mybatis-spring</artifactId>
       <version>1.2.2</version>
     </dependency>
+
     <!-- jsp页面使用的jstl支持-->
     <dependency>
       <groupId>jstl</groupId>

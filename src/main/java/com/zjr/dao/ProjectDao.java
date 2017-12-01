@@ -10,27 +10,27 @@ import java.util.List;
 public interface ProjectDao {
 
 	/**
-	 * 添加用户
+	 * 添加项目
 	 */
 	public boolean save(Project project);
 
 	/**
-	 * 删除用户
+	 * 删除项目
 	 */
 	public boolean delete(int id);
 
 	/**
-	 * 更新用户
+	 * 更新项目
 	 */
 	public boolean update(Project project);
 
 	/**
-	 * 	根据ID获取用户
+	 * 	根据ID获取项目
 	 */
 	public Project get(int id);
 
 	/**
-	 * 	根据ID获取用户
+	 * 	根据Name获取项目
 	 */
 	public Project getByName(String proName);
 
@@ -55,7 +55,7 @@ public interface ProjectDao {
 	public int countByStatus();
 
 	/**
-	 * 按姓名查询总量
+	 * 按项目名查询总量
 	 */
 	public int countByName(String proName);
 	/**

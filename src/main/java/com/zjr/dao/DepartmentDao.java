@@ -10,29 +10,34 @@ import java.util.List;
 public interface DepartmentDao {
 
 	/**
-	 * 添加用户
+	 * 添加部门
 	 */
 	public boolean save(Department department);
 
 	/**
-	 * 删除用户
+	 * 删除部门
 	 */
 	public boolean delete(int id);
 
 	/**
-	 * 更新用户
+	 * 更新部门
 	 */
 	public boolean update(Department department);
 
 	/**
-	 * 	根据ID获取用户
+	 * 	根据ID获取部门
 	 */
-	public Department get(int id);
+	public Department getById(int id);
 
 	/**
-	 * 	根据ID获取用户
+	 * 	根据Name获取部门
 	 */
 	public Department getByName(String name);
+
+	/**
+	 * 列表
+	 */
+	public List<Department> queryAll();
 
 	/**
 	 * 分页列表
@@ -53,8 +58,4 @@ public interface DepartmentDao {
 	 */
 	public List<DepartmentDto> queryByName(@Param("name") String loginName, @Param("page") int page, @Param("size") int size);
 
-	/**
-	 * 匹配查询
-	 */
-	public Department getById(Department department);
 }

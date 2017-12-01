@@ -4,6 +4,7 @@ import com.zjr.dto.DepartmentDto;
 import com.zjr.entity.Department;
 import com.zjr.util.PageList;
 
+import java.util.List;
 
 
 public interface DepartmentService {
@@ -24,12 +25,21 @@ public interface DepartmentService {
 	boolean update(Department department);
 
 	/**
-	 * 查
+	 * 根据ID查询部门
 	 */
-	Department get(int id);
+	Department getById(int id);
 
 	/**
+	 * 根据Name查询部门
+	 */
+	Department getByName(String name);
+	/**
 	 * 列
+	 */
+	List<Department> queryAll();
+
+	/**
+	 * 分页列
 	 */
 	PageList<DepartmentDto> queryByPage(int page, int size);
 	/**
