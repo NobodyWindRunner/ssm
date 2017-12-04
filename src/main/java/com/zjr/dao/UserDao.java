@@ -6,6 +6,7 @@ import com.zjr.util.PageList;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface UserDao {
@@ -58,4 +59,8 @@ public interface UserDao {
 	 * 匹配查询
 	 */
 	public User getById(User user);
+
+	public Set<String> queryRolesByName(String loginName);
+
+	public User queryUserByName(String loginName);
 }

@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<div class="login-icon">LOGO</div>
   		<div class="login-form">
   			<div class="control-group">
-  				<input type="text" name="id" id="txtUserName" class="login-field"  placeholder="用户名" title="用户名"/>
+  				<input type="text" name="loginName" id="txtUserName" class="login-field"  placeholder="用户名" title="用户名"/>
   			  	<label class="login-field-icon user" for="txtUserName"></label>
   			</div>
   			<div class="control-group">

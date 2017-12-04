@@ -11,6 +11,7 @@ import com.zjr.service.UserService;
 import com.zjr.util.PageList;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -78,5 +79,15 @@ public class UserServiceImpl implements UserService {
 		}
 		int count=dao.countByName(loginName);
 		return new PageList<UserDto>(list, page, size, count);
+	}
+
+	@Override
+	public Set<String> queryRolesByName(String loginName){
+		return dao.queryRolesByName(loginName);
+	}
+
+	@Override
+	public User queryUserByName(String loginName) {
+		return dao.queryUserByName(loginName);
 	}
 }

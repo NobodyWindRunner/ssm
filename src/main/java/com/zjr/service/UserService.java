@@ -4,6 +4,7 @@ import com.zjr.dto.UserDto;
 import com.zjr.entity.User;
 import com.zjr.util.PageList;
 
+import java.util.Set;
 
 
 public interface UserService {
@@ -46,4 +47,8 @@ public interface UserService {
 	 *模糊列
 	 */
 	PageList<UserDto> queryByName(String loginName, int page,int size);
+
+	Set<String> queryRolesByName(String userName);
+
+	User queryUserByName(String userName);
 }

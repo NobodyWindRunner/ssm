@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -310,6 +311,7 @@
             <div id="sidebar-nav" class="sidebar-nav">
                 <div class="list-box">
                 <!-- 顶级菜单 -->
+                    <shiro:hasAnyRoles name="管理员">
                     <c:forEach var="m"  items="${menus}">
                        <c:if test="${m.parentId==0}">
                           <div class="list-group" name="${m.menuName}" style="display: none;">
@@ -341,8 +343,8 @@
                                      </ul>
                        </div>
                        </c:if>
-                    </c:forEach>  
-                    
+                    </c:forEach>
+                    </shiro:hasAnyRoles>
                     <script type="text/javascript">
                      $(function(){
                 	     $("#nav li").removeClass("selected").eq(0).addClass("selected");
