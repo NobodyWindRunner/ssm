@@ -9,6 +9,11 @@
 
 	<!-- 使用spring组件扫描@service  -->
 	<context:component-scan base-package="com.zjr.service"/>
+	<!-- 配置缓存管理器 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<!-- 指定 ehcache 的配置文件 -->
+		<property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
+	</bean>
 	<!-- 自定义域realm -->
 	<bean id="customRealm" class="com.zjr.realm.CustomRealm">
 		<property name="userService" ref="userService" />
@@ -32,7 +37,9 @@
 		<property name="filterChainDefinitions">
 			<value>
 				<!-- 对静态资源设置匿名访问 -->
-				/login.jsp=anon
+				/login=anon
+				/views/** = authc
+				/**/** = authc
 			</value>
 		</property>
 	</bean>

@@ -37,12 +37,10 @@ public class IndexMenuController{
 
 	@Resource
     private MenuInfoService service;
-//	@Resource
-//	private LoginService loginService;
 	@Autowired
 	private UserService userService;
-	
-	@RequestMapping(value="menu",method = RequestMethod.POST)
+
+	@RequestMapping(value="menu")
 	public String addMenu(HttpServletRequest req){
 		//查询所有菜单
 		List<MenuInfo> list=service.query();
@@ -62,32 +60,18 @@ public class IndexMenuController{
 		session = req.getSession(false);
 		if(session!=null){
 			session.removeAttribute(Comm.USER_SESSION_NAME);
+			Subject subject = SecurityUtils.getSubject();
+			subject.logout();
 		}
 		return "login";
 	}
-
-//	@RequestMapping(value = "index")
-//    public String login(User user,HttpServletRequest req,HttpSession session)throws IOException{
-//    	if(user.getId()==null&&user.getPassword()==null){
-//			req.setAttribute("message", "请输入用户名跟密码");
-//    	}else if(user.getId()==null){
-//			req.setAttribute("message", "用户名不能为空");
-//    	}else if(user.getPassword()==null){
-//			req.setAttribute("message", "密码不能为空");
-//    		return "login";
-//    	}else{
-//    		User logUser =loginService.login(user);
-//    		if(logUser!=null &&logUser.getPassword().equals(user.getPassword())){
-//				session.setAttribute(Comm.USER_SESSION_NAME, logUser);
-//				this.addMenu(req);
-//				return "index";
-//			}
-//			req.setAttribute("message", "用户名或密码错误");
-//    	}
-//    	return "login";
-//    }
 	@RequestMapping(value = "index")
 	public String login(User user,Model model,HttpServletRequest req,HttpSession session)throws IOException{
+		session = req.getSession(false);
+		if(session.getAttribute(Comm.USER_SESSION_NAME)!=null){
+			this.addMenu(req);
+			return "index";
+		}
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getLoginName(),user.getPassword());
 		try {
