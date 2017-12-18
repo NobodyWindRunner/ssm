@@ -19,11 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zjr.entity.MenuInfo;
 import com.zjr.entity.User;
-import com.zjr.service.LoginService;
 import com.zjr.service.MenuInfoService;
 
 
@@ -66,11 +64,14 @@ public class IndexMenuController{
 		return "login";
 	}
 	@RequestMapping(value = "index")
-	public String login(User user,Model model,HttpServletRequest req,HttpSession session)throws IOException{
+	public String login(User user,HttpServletRequest req,HttpSession session)throws IOException{
 		session = req.getSession(false);
 		if(session.getAttribute(Comm.USER_SESSION_NAME)!=null){
 			this.addMenu(req);
 			return "index";
+		}
+		if(user.getLoginName()==null && user.getPassword()==null){
+			return "login";
 		}
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getLoginName(),user.getPassword());

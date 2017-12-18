@@ -2,6 +2,7 @@ package com.zjr.realm;
 
 import com.zjr.entity.User;
 import com.zjr.service.UserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -16,17 +17,7 @@ public class CustomRealm extends AuthorizingRealm {
     private static final Logger logger = LoggerFactory.getLogger(CustomRealm.class);
     @Autowired
     private UserService userService;
-    /**
-     * 用户授权认证
-     */
-    @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        logger.info("======用户授权认证======");
-        String loginName = principalCollection.getPrimaryPrincipal().toString();
-        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        simpleAuthorizationInfo.setRoles(userService.queryRolesByName(loginName));
-        return simpleAuthorizationInfo;
-    }
+
     /**
      * 用户登陆认证
      */
@@ -42,6 +33,18 @@ public class CustomRealm extends AuthorizingRealm {
         }
         return null;
     }
+    /**
+     * 用户授权认证
+     */
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        logger.info("======用户授权认证======");
+        String loginName = principalCollection.getPrimaryPrincipal().toString();
+        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+        simpleAuthorizationInfo.setRoles(userService.queryRolesByName(loginName));
+        return simpleAuthorizationInfo;
+    }
+
     public UserService getUserService() {
         return userService;
     }

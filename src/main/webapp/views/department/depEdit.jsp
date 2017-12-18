@@ -29,6 +29,18 @@
         		});
         	});
         });
+//        $.ajax({
+//            url: "../department/check",
+//            type: 'GET',
+//            data: {"name":$("#txtName").val()},
+//            dataType:"json",
+//            success: function(data){
+//                alert(data);
+//            },
+//            error: function (data) {
+//                alert("none");
+//            },
+//        });
     </script>
 </head>
 <body class="mainbody">
