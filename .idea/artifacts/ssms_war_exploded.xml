@@ -41,12 +41,12 @@
           <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:9.2.10.v20150310" />
           <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-io:9.2.10.v20150310" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.5.4" />
-          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.2.4" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.2.2" />
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.3" />
-          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-ehcache:1.2.4" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-web:1.2.2" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-spring:1.2.2" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-ehcache:1.2.2" />
           <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache-core:2.5.0" />
-          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-web:1.2.4" />
-          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-spring:1.2.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">
