@@ -23,7 +23,7 @@
 		</javaClientGenerator>
 
 		<!-- 要生成哪些表 -->
-		<table tableName="db_teacher" domainObjectName="teacher"
+		<table tableName="db_teacher" domainObjectName="Teacher"
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false"></table>
