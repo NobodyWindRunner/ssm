@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50539
 File Encoding         : 65001
 
-Date: 2017-12-25 10:23:12
+Date: 2017-12-25 10:43:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -141,6 +141,7 @@ CREATE TABLE `db_teacher` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `teaName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `teaClass` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `teaAge` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
