@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50539
 File Encoding         : 65001
 
-Date: 2017-12-04 16:09:56
+Date: 2017-12-25 10:23:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -115,8 +115,6 @@ INSERT INTO `db_project` VALUES ('2', '后台报表系统', 'XX银行后台报�
 INSERT INTO `db_project` VALUES ('3', '自助贷款系统', 'XX银行自助贷款系统', '1');
 INSERT INTO `db_project` VALUES ('4', '自助点单系统', 'XXKTV自助点单系统', '3');
 INSERT INTO `db_project` VALUES ('5', '自助收费系统', 'XXKTV自助收费系统', '2');
-INSERT INTO `db_project` VALUES ('6', '213123', '213123', '0');
-INSERT INTO `db_project` VALUES ('7', '321321', '213213', '0');
 INSERT INTO `db_project` VALUES ('8', 'SSMS', 'XX银行自助贷款系统SSMS', '1');
 
 -- ----------------------------
@@ -136,6 +134,21 @@ INSERT INTO `db_role` VALUES ('0', '管理员');
 INSERT INTO `db_role` VALUES ('1', '员工');
 
 -- ----------------------------
+-- Table structure for db_teacher
+-- ----------------------------
+DROP TABLE IF EXISTS `db_teacher`;
+CREATE TABLE `db_teacher` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `teaName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `teaClass` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of db_teacher
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for db_user
 -- ----------------------------
 DROP TABLE IF EXISTS `db_user`;
@@ -145,13 +158,14 @@ CREATE TABLE `db_user` (
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `statusVal` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of db_user
 -- ----------------------------
 INSERT INTO `db_user` VALUES ('2', 'admin', 'admin', '1');
 INSERT INTO `db_user` VALUES ('3', 'user', 'user', '1');
+INSERT INTO `db_user` VALUES ('4', 'zjr', 'zjr', '1');
 
 -- ----------------------------
 -- Table structure for db_user_role
