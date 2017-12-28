@@ -11,18 +11,19 @@ import javax.servlet.http.HttpSession;
 import com.zjr.service.UserService;
 import com.zjr.util.Comm;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zjr.entity.MenuInfo;
 import com.zjr.entity.User;
 import com.zjr.service.MenuInfoService;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 /**
@@ -47,9 +48,10 @@ public class IndexMenuController{
 		return "index";
 	}
 
-	@RequestMapping(value = "login")
-	public String index(HttpServletRequest req){
+	@RequestMapping(value = "/login",method = RequestMethod.GET)
+	public String login(){
 		//登录页
+		System.out.println("do controller->login");
 		return "login";
 	}
 
@@ -64,14 +66,15 @@ public class IndexMenuController{
 		return "login";
 	}
 	@RequestMapping(value = "index")
-	public String login(User user,HttpServletRequest req,HttpSession session)throws IOException{
+	public String index(User user,HttpServletRequest req,HttpSession session)throws IOException{
+		System.out.println("do controller->index");
 		session = req.getSession(false);
 		if(session.getAttribute(Comm.USER_SESSION_NAME)!=null){
 			this.addMenu(req);
 			return "index";
 		}
 		if(user.getLoginName()==null && user.getPassword()==null){
-			return "login";
+			return this.login();
 		}
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getLoginName(),user.getPassword());
@@ -80,10 +83,9 @@ public class IndexMenuController{
 			session.setAttribute(Comm.USER_SESSION_NAME,user);
 			this.addMenu(req);
 			return "index";
-		} catch (Exception e) {
+		} catch (AuthenticationException e) {
 			req.setAttribute("message", "用户名或密码错误");
-			e.printStackTrace();
-			return "login";
+			return this.login();
 		}
 	}
 }

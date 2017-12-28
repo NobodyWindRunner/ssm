@@ -5,9 +5,7 @@
          id="WebApp_ID" version="3.0">
 
   <display-name>ssms</display-name>
-  <welcome-file-list>
-    <welcome-file>login</welcome-file>
-  </welcome-file-list>
+
 
   <!--加载Spring的配置文件到上下文中去-->
   <context-param>
@@ -73,5 +71,7 @@
     <url-pattern>/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
   </filter-mapping>
 </web-app>

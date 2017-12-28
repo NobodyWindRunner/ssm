@@ -27,18 +27,20 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<!-- 装配安全管理器 -->
 		<property name="securityManager" ref="securityManager"/>
-		<!-- 配置登陆页面 -->
-		<property name="loginUrl" value="/index"/>
-		<!-- 登陆成功后的一面 -->
-		<property name="successUrl" value="/success.jsp"/>
+		<property name="loginUrl" value="/login"/>
 		<!-- 权限认证失败    没有权限认证提交的地址 -->
-		<property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+		<property name="unauthorizedUrl" value="/views/fail.jsp"/>
 		<!-- 具体配置需要拦截哪些 URL, 以及访问对应的 URL 时使用 Shiro 的什么 Filter 进行拦截.  -->
 		<property name="filterChainDefinitions">
 			<value>
 				<!-- 对静态资源设置匿名访问 -->
 				/login=anon
-				/views/** = authc
+				/css/**=anon
+				/image/**=anon
+				/js/**=anon
+				/skin/**=anon
+				/index=anon
+				/logout=anon
 				/**/** = authc
 			</value>
 		</property>
