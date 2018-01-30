@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjr.dao.TestMapper">
+  <resultMap id="BaseResultMap" type="com.zjr.entity.Test">
+    <id column="testId" jdbcType="INTEGER" property="testid" />
+    <result column="testName" jdbcType="VARCHAR" property="testname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    testId, testName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from db_test
+    where testId = #{testid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from db_test
+    where testId = #{testid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zjr.entity.Test">
+    insert into db_test (testId, testName)
+    values (#{testid,jdbcType=INTEGER}, #{testname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjr.entity.Test">
+    insert into db_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="testid != null">
+        testId,
+      </if>
+      <if test="testname != null">
+        testName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="testid != null">
+        #{testid,jdbcType=INTEGER},
+      </if>
+      <if test="testname != null">
+        #{testname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjr.entity.Test">
+    update db_test
+    <set>
+      <if test="testname != null">
+        testName = #{testname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where testId = #{testid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjr.entity.Test">
+    update db_test
+    set testName = #{testname,jdbcType=VARCHAR}
+    where testId = #{testid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zjr.entity.Test">
+    <result column="testId" jdbcType="INTEGER" property="testid" />
+    <result column="testName" jdbcType="VARCHAR" property="testname" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zjr.entity.Test">
+    insert into db_test (testId, testName)
+    values (#{testid,jdbcType=INTEGER}, #{testname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjr.entity.Test">
+    insert into db_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="testid != null">
+        testId,
+      </if>
+      <if test="testname != null">
+        testName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="testid != null">
+        #{testid,jdbcType=INTEGER},
+      </if>
+      <if test="testname != null">
+        #{testname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -2,11 +2,13 @@ package com.zjr.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 用户bean
  */
 @Data
-public class User {
+public class User implements Serializable {
 
 	private Integer id;
 	private String loginName;

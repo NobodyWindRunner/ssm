@@ -23,7 +23,7 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        //logger.info("======用户登陆认证======");
+        logger.info("======用户登陆认证======");
         String loginName = authenticationToken.getPrincipal().toString();
         User user = userService.queryUserByName(loginName);
         String realmName = this.getName();
@@ -38,7 +38,7 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        //logger.info("======用户授权认证======");
+        logger.info("======用户授权认证======");
         String loginName = principalCollection.getPrimaryPrincipal().toString();
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.setRoles(userService.queryRolesByName(loginName));

@@ -17,6 +17,7 @@
 						userId="root" password="" />
 		<!-- 生成模型的包名和位置 -->
 		<javaModelGenerator targetPackage="com.zjr.entity" targetProject="target" >
+			<!-- 在targetPackage的基础上，根据数据库的schema再生成一层package-->
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
@@ -33,6 +34,12 @@
 		<table tableName="db_teacher" domainObjectName="Teacher"
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
-			   selectByExampleQueryId="false"></table>
+			   selectByExampleQueryId="false">
+		</table>
+		<table tableName="db_test" domainObjectName="Test"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+		</table>
 	</context>
 </generatorConfiguration>

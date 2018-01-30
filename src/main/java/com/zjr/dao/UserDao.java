@@ -62,5 +62,5 @@ public interface UserDao {
 
 	public Set<String> queryRolesByName(String loginName);
 
-	public User queryUserByName(String loginName);
+	User queryUserByName(String loginName);
 }

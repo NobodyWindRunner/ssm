@@ -5,6 +5,7 @@
 <!--namespace用于与DAO层的接口类进行绑定,这样我们无需实现DAO层的接口
 类,其接口类就能够自动的找到相关的SQL语句进行绑定实现-->
 <mapper namespace="com.zjr.dao.UserDao">
+    <cache eviction="LRU" type="com.zjr.util.RedisCache" />
     <resultMap type="User" id="UserList">
         <result property="id" column="id"/>
         <result property="loginName" column="loginName"/>
@@ -65,10 +66,24 @@
     </select>
 
     <select id="queryRolesByName" resultType="java.lang.String" parameterType="java.lang.String">
-        SELECT name FROM db_role r,db_user_role ur,db_user u WHERE r.id = ur.roleId AND u.id = ur.userId AND u.loginName=#{loginName}
+        <![CDATA[
+            SELECT
+               name
+            FROM
+                db_role r,db_user_role ur,db_user u
+            WHERE
+                r.id = ur.roleId AND u.id = ur.userId AND u.loginName=#{loginName}
+        ]]>
     </select>
 
     <select id="queryUserByName" resultType="User" parameterType="java.lang.String">
-        SELECT * FROM db_user WHERE loginName=#{loginName}
+        <![CDATA[
+          SELECT
+            *
+          FROM
+            db_user
+          WHERE
+            loginName=#{loginName}
+        ]]>
     </select>
 </mapper>
